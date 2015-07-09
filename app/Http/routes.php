@@ -19,8 +19,6 @@ Route::get('/search', 'DomainsController@search');
 // Domain Name Reservation
 Route::get('reservation', 'DomainsController@reservation');
 
-
-
 /* Administrator */
 Route::group(['prefix' => 'admin', 'middleware' => 'AdminMiddleware'], function(){
 	Route::resource('domains', 'DomainsController');
