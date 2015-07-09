@@ -11,6 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'DomainsController@home');
+
+// Domain Name Searching
+Route::get('/search', 'DomainsController@search');
+
+// Domain Name Reservation
+Route::get('reservation', 'DomainsController@reservation');
+
+
+
+/* Administrator */
+Route::group(['prefix' => 'admin', 'middleware' => 'AdminMiddleware'], function(){
+	Route::resource('domains', 'DomainsController');
+	Route::resource('admins', 'UsersController');
+	Route::get('settings', 'SystemController@index');
 });
+
+
