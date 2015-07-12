@@ -85,7 +85,9 @@ class DomainsController extends Controller
 
     public function search(){}
 
-    public function home(){}
+    public function home(){
+        return view('homepage');
+    }
 
     public function reservation(){}
 }

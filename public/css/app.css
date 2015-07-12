@@ -1,0 +1,22 @@
+
+body{}
+
+/* Re-Configure Bootstrap css rules */
+.container{
+	/* max-width: 730px; */
+}
+
+button,input,form{
+	outline: none !important;
+}
+
+section#home{
+	width: 100%;
+	height : 500px;
+	background: url(../img/kenya-child-on-a-computer.jpg) no-repeat;
+	background-size: cover;
+}
+
+.domain-search-form{
+	margin-top: 250px;
+}

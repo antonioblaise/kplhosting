@@ -1,5 +1,5 @@
 @include('layout.header')
-    <!-- Javascript files -->
-    <script type="text/javascript" src="{{ url('js/vendor/bootstrap.min.js') }}"></script>
-    </body>
-</html>
+<!-- Contents Goes Here -->
+@yield('container')
+<!-- Contents Container Ends Here -->
+@include('layout.footer')
