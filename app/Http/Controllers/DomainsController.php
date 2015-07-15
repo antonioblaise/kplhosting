@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Kplhosting\Domains;
 
 class DomainsController extends Controller
 {
@@ -84,7 +85,9 @@ class DomainsController extends Controller
     }
 
     public function search(Request $request){
-        return $request->all();
+        $domain = $request->input('domain');
+        $search = Domains::getDomainExtension($domain);
+        return view('domain.search')->with('search', $search);
     }
 
     public function home(){
