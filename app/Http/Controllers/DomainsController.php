@@ -83,7 +83,9 @@ class DomainsController extends Controller
         //
     }
 
-    public function search(){}
+    public function search(Request $request){
+        return $request->all();
+    }
 
     public function home(){
         return view('homepage');

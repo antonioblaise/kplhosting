@@ -1,22 +1,76 @@
 
-body{}
+body{
+	font-family: 'Roboto Condensed', sans-serif;
+}
 
 /* Re-Configure Bootstrap css rules */
 .container{
-	/* max-width: 730px; */
+	max-width: 970px; 
 }
 
 button,input,form{
 	outline: none !important;
 }
 
+
+/* Header Section */
+#header #logo{
+	padding: 5px 0;
+}
+
+#header #user{
+	margin-top: 26px;
+}
+
+/* Navigation Section */
+#navigation{
+	background: #262626;
+}
+
+#navigation a{
+	color: #FFF;
+	font-size: 18px;
+	text-shadow: none;
+}
+
+#navigation li{
+	padding-right: 15px;
+	text-transform: uppercase;
+}
+
+#navigation li:hover a{
+	color: #000;
+}
 section#home{
+	position: relative;
 	width: 100%;
 	height : 500px;
 	background: url(../img/kenya-child-on-a-computer.jpg) no-repeat;
 	background-size: cover;
 }
 
+.opaque-container{
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(0,0,0,0.3);
+}
+
 .domain-search-form{
-	margin-top: 250px;
+	margin-top: 200px;
+}
+
+.search-header{
+	color: #FFF;
+}
+
+/* Services Section */
+#services{
+	margin: 20px 0;
+}
+
+#services .price{
+	font-size: 100%;
 }

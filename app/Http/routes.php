@@ -13,11 +13,13 @@
 
 Route::get('/', 'DomainsController@home');
 
-// Domain Name Searching
-Route::get('/search', 'DomainsController@search');
+Route::group(['prefix' => 'domain', 'as'=> 'domain.'], function(){
+	// Domain Name Searching
+	Route::get('/search', ['as' => 'search', 'uses' => 'DomainsController@search']);
+	// Domain Name Reservation
+	Route::get('reservation', ['as' => 'reservation', 'uses' =>'DomainsController@reservation']);
+});
 
-// Domain Name Reservation
-Route::get('reservation', 'DomainsController@reservation');
 
 /* Administrator */
 Route::group(['prefix' => 'admin', 'middleware' => 'AdminMiddleware'], function(){
