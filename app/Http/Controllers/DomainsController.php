@@ -104,7 +104,7 @@ class DomainsController extends Controller
         }
 
         if(Domains::isUgandan($domain)){
-            $response = UG_Domains::isAvailable(Domains::cleanURL($domain));
+            var_dump(UG_Domains::isAvailable(Domains::cleanURL($domain)));
         }elseif (Domains::isRwandan($domain)) {
             var_dump(Domains::cleanURL($domain));
         }
@@ -115,5 +115,7 @@ class DomainsController extends Controller
         return view('homepage');
     }
 
-    public function reservation(){}
+    public function reservation(){
+        
+    }
 }

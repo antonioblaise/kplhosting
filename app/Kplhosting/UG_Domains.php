@@ -18,9 +18,9 @@
 		}
 
 		public static function isAvailable($domain){
-			$xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><request cmd=\"whois\"><domain name=\"$domain\"></domain></request>";
+			$xml = '<?xml version="1.0" encoding="UTF-8" standalone="no"?><request cmd="whois"><domain name="$domain"></domain></request>';
 			$response = self::sendRequest($xml);
-			return false;
+			return $response;
 		}
 		public function create($domain){
 			
@@ -42,6 +42,15 @@
 		}
 
 		public static function sendRequest($xmlData){
-			
+			$client = new HTTP_Client([
+				'url' => 'https://new.registry.co.ug:8006/api'
+			]);
+
+			$options = [
+				'params' => $xmlData 
+			]; 
+
+			$response = $client->post('https://new.registry.co.ug:8006/api', $options);
+			return $response;
 		}
 	}

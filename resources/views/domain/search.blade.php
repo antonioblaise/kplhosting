@@ -3,9 +3,6 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<pre>
-					{{ ($response) }}
-				</pre>
 				@if(Session::has('errordomain'))
 				<h3 class="alert alert-danger">
 					{{ Session::get('errordomain') }}

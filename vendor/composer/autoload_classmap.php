@@ -990,6 +990,7 @@ return array(
     'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => $vendorDir . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
     'Kplhosting\\COM_Domains' => $baseDir . '/app/Kplhosting/COM_Domains.php',
     'Kplhosting\\Domains' => $baseDir . '/app/Kplhosting/Domains.php',
+    'Kplhosting\\HTTP_Client' => $baseDir . '/app/Kplhosting/HTTP_Client.php',
     'Kplhosting\\UG_Domains' => $baseDir . '/app/Kplhosting/UG_Domains.php',
     'League\\Flysystem\\AdapterInterface' => $vendorDir . '/league/flysystem/src/AdapterInterface.php',
     'League\\Flysystem\\Adapter\\AbstractAdapter' => $vendorDir . '/league/flysystem/src/Adapter/AbstractAdapter.php',
