@@ -105,8 +105,6 @@ class DomainsController extends Controller
 
         if(Domains::isUgandan($domain)){
             $response = UG_Domains::isAvailable(Domains::cleanURL($domain));
-            $reader = new Reader();
-            $reader->xml($response);
         }elseif (Domains::isRwandan($domain)) {
             var_dump(Domains::cleanURL($domain));
         }

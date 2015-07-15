@@ -20,7 +20,7 @@
 		public static function isAvailable($domain){
 			$xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><request cmd=\"whois\"><domain name=\"$domain\"></domain></request>";
 			$response = self::sendRequest($xml);
-			return $response->getBody();
+			return false;
 		}
 		public function create($domain){
 			
@@ -42,8 +42,6 @@
 		}
 
 		public static function sendRequest($xmlData){
-			$client = new Client();
-			$request = $client->post('https://new.registry.co.ug:8006/api', ['body' => $xmlData, 'debug' => true]);
-			return $request;
+			
 		}
 	}
