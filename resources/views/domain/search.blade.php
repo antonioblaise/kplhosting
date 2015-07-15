@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<pre>
-					{{ print_r($response) }}
+					{{ ($response) }}
 				</pre>
 				@if(Session::has('errordomain'))
 				<h3 class="alert alert-danger">
