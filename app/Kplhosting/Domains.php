@@ -26,7 +26,7 @@ class Domains{
 	public function __construct(){}
 
 	public static function getDomainExtension($domain){
-		$search = preg_match_all('/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.([a-zA-Z.]{2,})$/i', $domain, $matches, PREG_SET_ORDER);
+		$search = preg_match_all('/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z.]{2,}$/i', $domain, $matches, PREG_SET_ORDER);
 		if($search){
 			//$results = ['domain_name'=> $matches[0][0],'name' => $matches[0][1],'extension' => $matches[0][2]];
 			return $matches;
