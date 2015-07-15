@@ -15,7 +15,9 @@
 <header id="header">		
 	<div class="container">
 		<div id="logo" class="col-md-9 pull-left">
-			<img src="{{ url('img/logo.png' )}}" alt="">
+			<a href="{{ url('/') }}">
+				<img src="{{ url('img/logo.png' )}}" alt="">
+			</a>
 		</div>
 		<div id="user" class="col-md-3 pull-right">
 			<a href="#" class="btn btn-default">Signin</a>

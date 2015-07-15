@@ -4,18 +4,23 @@
 	Developed for KPLHosting Platform
 */
 
+	use GuzzleHttp\Client;
+
 	class UG_Domains extends Domains{
 
 		private $domain = null;
 		private $extensions = null;
 		private $xmlQuery;
+		private static $client;
 
 		public function __construct(){
 			$this->extensions = $this->ug_extensions;
 		}
 
-		public function isAvailable(){
-			return false;
+		public static function isAvailable($domain){
+			$xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><request cmd=\"whois\"><domain name=\"$domain\"></domain></request>";
+			$response = self::sendRequest($xml);
+			return $response->getBody();
 		}
 		public function create($domain){
 			
@@ -36,8 +41,9 @@
 			return $final_xml;
 		}
 
-		public function sendRequest($xmlData){
-			$client = new GuzzleHttp\Client();
-			$response = $client->post('https://new.registry.co.ug:8006/api');
+		public static function sendRequest($xmlData){
+			$client = new Client();
+			$request = $client->post('https://new.registry.co.ug:8006/api', ['body' => $xmlData ]);;
+			return $request;
 		}
 	}

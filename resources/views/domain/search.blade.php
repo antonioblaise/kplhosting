@@ -4,8 +4,14 @@
 		<div class="row">
 			<div class="col-md-12">
 				<pre>
-					{{ var_dump($search) }}
+					{{ print_r($response) }}
 				</pre>
+				@if(Session::has('errordomain'))
+				<h3 class="alert alert-danger">
+					{{ Session::get('errordomain') }}
+				</h3>
+				@endif
+				<h3>Searching: </h3>
 				{!! Form::open(['method' => 'get', 'route' => 'domain.search', 'class'=> 'searchform']) !!}
 					<div class="form-group">
 						<div class="input-group input-group-lg">

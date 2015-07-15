@@ -2,45 +2,73 @@
 
 class Domains{
 
-	protected $ug_extensions =array(
-		'ug', 
-		'co.ug',
-		'or.ug', 
-		'ac.ug', 
-		'sc.ug',
-		'go.ug',
-		'ne.ug',
-		'com.ug',
-		'org.ug'
-	);
+	private static $ug_extensions = ['ug','co.ug', 'or.ug',  'ac.ug',  'sc.ug', 'go.ug', 'ne.ug', 'com.ug', 'org.ug'];
+	private static $rw_extensions = ['rw', 'co.rw', 'org.rw', 'coop.rw', 'ltd.rw', 'ac.rw'];
 
-	protected $rw_extensions = array(
-		'rw',
-		'co.rw',
-		'org.rw',
-		'coop.rw',
-		'ltd.rw',
-		'ac.rw'
-	);
-
-	public function __construct(){}
+	public function __construct(){
+		
+	}
 
 	public static function getDomainExtension($domain){
-		$search = preg_match_all('/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z.]{2,}$/i', $domain, $matches, PREG_SET_ORDER);
-		if($search){
-			//$results = ['domain_name'=> $matches[0][0],'name' => $matches[0][1],'extension' => $matches[0][2]];
-			return $matches;
+		$domain = self::cleanURL($domain);
+		if($domain != false){
+			$parse = preg_match_all('/^(?!-)([a-zA-Z0-9-]{2,63})(?<!-)\.([a-zA-Z\.]{2,})/i', $domain, $matches);
+			if($parse){
+				return $matches[2][0];
+			}
+			return false;
 		}
 		return false;
 	}
 
-	public static function acceptableExtension($domain){
-		$extension = self::getDomainExtension($domain)[0][2];
-		if(in_array($extension, $ug_extensions)){
-			return 'it is a ugandan domain name';
+	public static function getDomainDetails($domain){
+		$domain = self::cleanURL($domain);
+		if($domain != false){
+			$parse = preg_match_all('/^(?!-)([a-zA-Z0-9-]{2,63})(?<!-)\.([a-zA-Z\.]{2,})/i', $domain, $matches);
+			if($parse){
+				return $matches;
+			}
+			return false;
 		}
-		elseif(in_array($extension, $rw_extensions)){
-			return 'it is a rwandan domain name';
+		return false;
+	}
+
+	public static function cleanURL($url){
+		$url = preg_replace("/(^(http(s)?:\/\/|www\.))?(www\.)?([a-z-\.0-9]+)/","$5", trim($url));
+	    if(preg_match("/^([a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6})/", $url, $domain)){
+	    	return $domain[1];
+	    }else{
+	    	return false;
+	    }
+	}
+
+	public static function isUgandan($domain){
+		$cleanDomain =  self::cleanURL($domain);
+		$extension = self::getDomainExtension($domain);
+
+		if(in_array($extension, self::$ug_extensions)){
+			return true;
 		}
+		return false;
+	}
+
+	public static function isRwandan($domain){
+		$cleanDomain = self::cleanURL($domain);
+		$extension = self::getDomainExtension($domain);
+
+		if(in_array($extension, self::$rw_extensions)){
+			return true;
+		}
+		return false;
+	}
+
+	public static function intlDomain($domain){
+		$cleanDomain = self::cleanURL($domain);
+		$extension = self::getDomainExtension($domain);
+
+		if(! in_array($extion, self::$rw_extensions) && ! in_array($domain, self::$ug_extensions)){
+			return true;
+		}
+		return false;
 	}
 }
