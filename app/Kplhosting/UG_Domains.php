@@ -43,7 +43,7 @@
 
 		public static function sendRequest($xmlData){
 			$client = new Client();
-			$request = $client->get('https://new.registry.co.ug:8006/api', ['body' => $xmlData , 'timeout' => 0, 'debug' => true]);
+			$request = $client->post('https://new.registry.co.ug:8006/api', ['body' => $xmlData, 'debug' => true]);
 			return $request;
 		}
 	}
