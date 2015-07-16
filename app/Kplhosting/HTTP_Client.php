@@ -46,7 +46,7 @@ class HTTP_Client{
 	}
 
 	public function connect_socket($xml){
-		$socket = fsockopen('ssl://new.registry.co.ug/api',8006, $errorno, $errstr, 30);
+		$socket = fsockopen('ssl://new.registry.co.ug',8006, $errorno, $errstr, 30);
 		if(!$socket){
 			return false;
 		}
