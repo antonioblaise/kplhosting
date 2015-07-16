@@ -59,8 +59,8 @@
 				'params' => $xmlData 
 			]; 
 
-			//$response = $client->post('https://new.registry.co.ug:8006/api', $options);
-			$response = $client->connect_socket($xmlData);
+			$response = $client->post('https://new.registry.co.ug:8006/api', $options);
+			//$response = $client->connect_socket($xmlData);
 			return $response;
 		}
 	}
