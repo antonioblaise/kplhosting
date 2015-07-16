@@ -98,24 +98,30 @@ class DomainsController extends Controller
                 'domain' => $parse[1][0],
                 'extension' => $parse[2][0]
             ];
+
+            if(Domains::isUgandan($domain)){
+                $response = UG_Domains::isAvailable(Domains::cleanURL($domain));
+            }elseif (Domains::isRwandan($domain)) {
+                var_dump(Domains::cleanURL($domain));
+            }
         }
         else{
             Session::flash('errordomain', 'Invalid Domain Name.. Please type correctly!');
         }
 
-        if(Domains::isUgandan($domain)){
-            var_dump(UG_Domains::isAvailable(Domains::cleanURL($domain)));
-        }elseif (Domains::isRwandan($domain)) {
-            var_dump(Domains::cleanURL($domain));
-        }
-        return view('domain.search', compact('response', $response));
+        $data = [
+            'results' => $results,
+            'domainResponse' =>  $response
+        ];
+
+        return view('domain.search', compact('data', $data));
     }
 
     public function home(){
         return view('homepage');
     }
 
-    public function reservation(){
+    public function reservation(Request $request){
         
     }
 }

@@ -25,6 +25,10 @@
 						</div>
 					</div>
 				{!! Form::close() !!}
+				<br>
+				<pre>
+					{!! $response !!}
+				</pre>
 			</div>
 		</div>
 	</div>

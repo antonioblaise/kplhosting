@@ -18,7 +18,16 @@
 		}
 
 		public static function isAvailable($domain){
-			$xml = '<?xml version="1.0" encoding="UTF-8" standalone="no"?><request cmd="whois"><domain name="$domain"></domain></request>';
+			$xml = "
+				<epp xmlns=\"urn:ietf:params:xml:ns:epp-1.0\">
+					<command>
+				        <info>
+				            <domain:info xmlns:domain=\"http://epp.cfi.co.ug/doc\">
+				                <domain:name>$domain</domain:name>
+				            </domain:info>
+				        </info>
+				    </command>
+				</epp>";
 			$response = self::sendRequest($xml);
 			return $response;
 		}
@@ -50,7 +59,7 @@
 				'params' => $xmlData 
 			]; 
 
-			$response = $client->post('https://new.registry.co.ug:8006/api', $options);
+			$response = $client->post('https://epp.cfi.co.ug:8008/', $options);
 			return $response;
 		}
 	}
