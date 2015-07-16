@@ -59,7 +59,8 @@
 				'params' => $xmlData 
 			]; 
 
-			$response = $client->post('https://epp.cfi.co.ug:8008/', $options);
+			//$response = $client->post('https://new.registry.co.ug:8006/api', $options);
+			$response = $client->connect_socket($xmlData);
 			return $response;
 		}
 	}
