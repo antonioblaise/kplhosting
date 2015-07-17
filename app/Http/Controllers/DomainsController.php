@@ -6,13 +6,19 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Session;
+use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
-use Kplhosting\Domains;
 use Kplhosting\UG_Domains;
+use Domains;
 use Sabre\Xml\Reader;
 
 class DomainsController extends Controller
 {
+    private $client;
+    
+    public function __construct(){
+        $this->client = new Client();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -89,32 +95,42 @@ class DomainsController extends Controller
 
     public function search(Request $request){
         $domain = $request->input('domain');
-        $parse = Domains::getDomainDetails($domain);
-        $results = null;
-        $response = null;
-        if($parse != false){
-            $results = [
-                'domain_name' => $parse[0][0],
-                'domain' => $parse[1][0],
-                'extension' => $parse[2][0]
-            ];
-
-            if(Domains::isUgandan($domain)){
-                $response = UG_Domains::isAvailable(Domains::cleanURL($domain));
-            }elseif (Domains::isRwandan($domain)) {
-                var_dump(Domains::cleanURL($domain));
+        $response = [];
+        $response['domain'] = $domain;
+        $response['domain_details'] = Domains::getDomainDetails($domain);
+        if(Domains::isDomainUG($domain)){
+            $xml = (string) Domains::post('https://new.registry.co.ug:8006/api', ['body' => Domains::UG_Whois_Command($domain)]); 
+            $reader = new Reader();
+            $reader->xml($xml);
+            $parsedXML = $reader->parse();
+            $data = $parsedXML['value'];
+            $status = (int) $parsedXML['attributes']['status'];
+            if($status){
+                Session::flash('errordomain', $domain.' domain is not available');
+                $response['data']['domain'] = $data[1]['attributes'];
+                $response['data']['registrant'] = $data[2]['value'][0]['attributes'];
+                $response['data']['admin'] = $data[2]['value'][1]['attributes'];
+                $response['data']['billing'] = $data[2]['value'][2]['attributes'];
+                $response['data']['tech'] = $data[2]['value'][3]['attributes'];
+                $response['data']['nameservers'] = [
+                    "ns1" => $data[3]['value'][0]['value'],
+                    "ns2" => $data[3]['value'][1]['value'],
+                    "ns3" => $data[3]['value'][2]['value'],
+                    "ns4" => $data[3]['value'][3]['value']
+                ];
+            }
+            else{
+                Session::flash('successdomain', $domain.' domain is available');
             }
         }
+        elseif(Domains::isDomainRW($domain)){
+
+        }
         else{
-            Session::flash('errordomain', 'Invalid Domain Name.. Please type correctly!');
+
         }
 
-        $data = [
-            'results' => $results,
-            'domainResponse' =>  $response
-        ];
-
-        return view('domain.search', compact('data', $data));
+        return view('domain.search', compact('response', $response));
     }
 
     public function home(){
