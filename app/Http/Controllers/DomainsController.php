@@ -98,6 +98,7 @@ class DomainsController extends Controller
         $response = [];
         $response['domain'] = $domain;
         $response['country'] = null;
+        $response['status'] = false;
         $response['domain_details'] = Domains::getDomainDetails($domain);
         if(Domains::isDomainUG($domain)){
             $response['country'] = "UGANDA";
@@ -108,6 +109,7 @@ class DomainsController extends Controller
             $data = $parsedXML['value'];
             $status = (int) $parsedXML['attributes']['status'];
             if($status){
+                $response['status'] = true;
                 Session::flash('errordomain', $domain.' domain is not available');
                 $response['data']['domain'] = $data[1]['attributes'];
                 $response['data']['registrant'] = $data[2]['value'][0]['attributes'];

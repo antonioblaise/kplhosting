@@ -35,10 +35,10 @@
 				<section id="whois">
 					<h3>Whois for {{ $response['domain'] }}</h3>
 					<hr>
-					@if($response['country'] == "UGANDA")
+					@if($response['country'] == "UGANDA" && $response['status'])
 						@include('domain.ugdomain')
 					@endif
-					@if($response['country'] == "RWANDA")
+					@if($response['country'] == "RWANDA" && $response['status'])
 						@include('domain.rwdomain')
 					@endif
 				</section>
