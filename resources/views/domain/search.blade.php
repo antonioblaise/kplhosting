@@ -38,6 +38,9 @@
 					@if($response['country'] == "UGANDA")
 						@include('domain.ugdomain')
 					@endif
+					@if($response['country'] == "RWANDA")
+						@include('domain.rwdomain')
+					@endif
 				</section>
 			</div>
 		</div>
