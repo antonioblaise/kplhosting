@@ -97,8 +97,10 @@ class DomainsController extends Controller
         $domain = $request->input('domain');
         $response = [];
         $response['domain'] = $domain;
+        $response['country'] = null;
         $response['domain_details'] = Domains::getDomainDetails($domain);
         if(Domains::isDomainUG($domain)){
+            $response['country'] = "UGANDA";
             $xml = (string) Domains::post('https://new.registry.co.ug:8006/api', ['body' => Domains::UG_Whois_Command($domain)]); 
             $reader = new Reader();
             $reader->xml($xml);
@@ -124,7 +126,7 @@ class DomainsController extends Controller
             }
         }
         elseif(Domains::isDomainRW($domain)){
-
+            echo "Hello";
         }
         else{
 
