@@ -10,6 +10,7 @@ use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
 use Kplhosting\UG_Domains;
 use Domains;
+use InternetBS\InternetBS;
 use Sabre\Xml\Reader;
 
 class DomainsController extends Controller
@@ -131,7 +132,19 @@ class DomainsController extends Controller
             $response['country'] = "RWANDA";
         }
         else{
-
+            $domain = Domains::cleanURL($domain);
+            $response['country'] = "INTERNATIONAL";
+            try{
+               if(InternetBS::api()->domainCheck($domain)){
+                    Session::flash('successdomain', $domain.' domain is available');
+               }
+               else{
+                    Session::flash('errordomain', $domain. ' domain is not available');
+               }
+            }
+            catch(Exception $e){
+                Session::flash('errordomain', ' Incorrect input domain. please type correctly');
+            }
         }
 
         return view('domain.search', compact('response', $response));
