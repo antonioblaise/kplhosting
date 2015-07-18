@@ -126,7 +126,7 @@ class DomainsController extends Controller
             }
         }
         elseif(Domains::isDomainRW($domain)){
-            echo "Hello";
+            $response['country'] = "RWANDA";
         }
         else{
 
