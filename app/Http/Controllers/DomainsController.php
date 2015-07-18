@@ -94,7 +94,7 @@ class DomainsController extends Controller
     }
 
     public function search(Request $request){
-        $domain = $request->input('domain');
+        $domain = strtolower($request->input('domain'));
         $response = [];
         $response['domain'] = $domain;
         $response['country'] = null;
