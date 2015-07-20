@@ -130,20 +130,41 @@ class DomainsController extends Controller
         }
         elseif(Domains::isDomainRW($domain)){
             $response['country'] = "RWANDA";
+            $response['status'] = true;
+            $response['data'] = [];
+            $domain = Domains::cleanURL($domain);
+            $params = [
+                'form_params' => [
+                    'search' => $domain
+                ],
+                'verify' => false
+            ];
+            $data = Domains::post('https://whois.ricta.org.rw/whois.jsp', $params);
+            if(preg_match_all('/<tr><th>(?:[a-zA-Z\s]+)<\/th><td><a href=\'(.+)\'>(?:[a-zA-Z\.]+)<\/a>/im', $data, $matches)){
+                Session::flash('errordomain', $domain.' domain is not available');
+            }
+            else{
+                Session::flash('successdomain', $domain. ' domain is available');
+            }
         }
         else{
             $domain = Domains::cleanURL($domain);
-            $response['country'] = "INTERNATIONAL";
-            try{
-               if(InternetBS::api()->domainCheck($domain)){
-                    Session::flash('successdomain', $domain.' domain is available');
-               }
-               else{
-                    Session::flash('errordomain', $domain. ' domain is not available');
-               }
+            if(!empty($domain)){
+                $response['country'] = "INTERNATIONAL";
+                try{
+                   if(InternetBS::api()->domainCheck($domain)){
+                        Session::flash('successdomain', $domain.' domain is available');
+                   }
+                   else{
+                        Session::flash('errordomain', $domain. ' domain is not available');
+                   }
+                }
+                catch(Exception $e){
+                    Session::flash('errordomain', ' Incorrect input domain. please type correctly');
+                }
             }
-            catch(Exception $e){
-                Session::flash('errordomain', ' Incorrect input domain. please type correctly');
+            else{
+                Session::flash('errordomain', ' Empty input domain. please type correctly');
             }
         }
 
