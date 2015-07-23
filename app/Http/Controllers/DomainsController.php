@@ -151,15 +151,15 @@ class DomainsController extends Controller
             $domain = Domains::cleanURL($domain);
             if(!empty($domain)){
                 $response['country'] = "INTERNATIONAL";
-                try{
-                   if(InternetBS::api()->domainCheck($domain)){
+                try {
+                    InternetBS::init('X1A7S0D7X8N0U0U0I6S2', 'Toto197500cxz');
+                    if(InternetBS::api()->domainCheck($domain)){
                         Session::flash('successdomain', $domain.' domain is available');
-                   }
-                   else{
+                    }else{
                         Session::flash('errordomain', $domain. ' domain is not available');
-                   }
-                }
-                catch(Exception $e){
+                    }
+                    
+                } catch (Exception $e) {
                     Session::flash('errordomain', ' Incorrect input domain. please type correctly');
                 }
             }
