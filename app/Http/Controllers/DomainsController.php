@@ -164,7 +164,7 @@ class DomainsController extends Controller
                 }
             }
             else{
-                Session::flash('errordomain', ' Empty input domain. please type correctly');
+                Session::flash('errordomain', ' Incorrect input domain. please type correctly');
             }
         }
 
