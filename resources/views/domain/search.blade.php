@@ -3,18 +3,6 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<!-- Failure Domain Session -->
-				@if(Session::has('errordomain'))
-				<h3 class="alert alert-danger">
-					{{ Session::get('errordomain') }}
-				</h3>
-				@endif
-				<!-- Success Domain Session -->
-				@if(Session::has('successdomain'))
-				<h3 class="alert alert-success">
-					{{ Session::get('successdomain') }}
-				</h3>
-				@endif
 				<h3>Searching: </h3>
 				{!! Form::open(['method' => 'get', 'route' => 'domain.search', 'class'=> 'searchform']) !!}
 					<div class="form-group">
@@ -32,16 +20,19 @@
 						</div>
 					</div>
 				{!! Form::close() !!}
-				<section id="whois">
-					<h3>Whois for {{ $response['domain'] }}</h3>
-					<hr>
-					@if($response['country'] == "UGANDA" && $response['status'])
-						@include('domain.ugdomain')
-					@endif
-					@if($response['country'] == "RWANDA" && $response['status'])
-						@include('domain.rwdomain')
-					@endif
-				</section>
+				<!-- Failure Domain Session -->
+				@if(Session::has('errordomain'))
+				<h3 class="alert alert-danger">
+					{{ Session::get('errordomain') }}
+				</h3>
+				@endif
+				<!-- Success Domain Session -->
+				@if(Session::has('successdomain'))
+				<h3 class="alert alert-success">
+					{{ Session::get('successdomain') }}
+				</h3>
+				<a href="#" class="btn btn-lg btn-info">Register This Domain</a>
+				@endif
 			</div>
 		</div>
 	</div>
