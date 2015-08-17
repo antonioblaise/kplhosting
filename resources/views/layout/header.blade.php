@@ -19,7 +19,7 @@
 					<img src="{{ url('img/logo.png' )}}" alt="">
 				</a>
 			</div>
-			<div id="user" class="col-md-3 pull-right">
+			<div id="user" class="pull-right">
 				<a href="#" class="btn btn-success">Administrator</a>
 			</div>
 		</div>
