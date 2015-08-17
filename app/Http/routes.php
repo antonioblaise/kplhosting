@@ -21,6 +21,14 @@ Route::group(['prefix' => 'domain', 'as'=> 'domain.'], function(){
 });
 
 
+// Authentication Routes
+Route::group(['prefix' => 'accounts'], function(){
+	Route::get('login', 'UsersController@getLogin');
+	Route::post('login', 'UsersController@postLogin');
+	Route::get('logout', 'UsersController@logout');
+});
+
+
 /* Administrator */
 Route::group(['prefix' => 'admin', 'middleware' => 'AdminMiddleware'], function(){
 	Route::resource('domains', 'DomainsController');
