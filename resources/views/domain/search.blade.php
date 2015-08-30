@@ -31,7 +31,7 @@
 				<h3 class="alert alert-success">
 					{{ Session::get('successdomain') }}
 				</h3>
-				<a href="#" class="btn btn-lg btn-info">Register This Domain</a>
+				@include('domain.form')
 				@endif
 			</div>
 		</div>
