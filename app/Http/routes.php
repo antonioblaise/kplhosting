@@ -20,7 +20,6 @@ Route::group(['prefix' => 'domain', 'as'=> 'domain.'], function(){
 	Route::get('reservation', ['as' => 'reservation', 'uses' =>'DomainsController@reservation']);
 });
 
-
 // Authentication Routes
 Route::group(['prefix' => 'accounts'], function(){
 	Route::get('login', 'UsersController@getLogin');
@@ -29,7 +28,7 @@ Route::group(['prefix' => 'accounts'], function(){
 });
 
 
-/* Administrator */
+// Administrator
 Route::group(['prefix' => 'admin', 'middleware' => 'AdminMiddleware'], function(){
 	Route::resource('domains', 'DomainsController');
 	Route::resource('admins', 'UsersController');
