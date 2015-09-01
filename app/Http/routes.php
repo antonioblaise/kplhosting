@@ -27,11 +27,14 @@ Route::group(['prefix' => 'accounts'], function(){
 	Route::get('logout', 'UsersController@logout');
 });
 
-
 // Administrator
-Route::group(['prefix' => 'admin', 'middleware' => 'AdminMiddleware'], function(){
-	Route::resource('domains', 'DomainsController');
-	Route::resource('admins', 'UsersController');
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
+	Route::get('/', function(){
+		return 'Hello World';
+	});
+	Route::resource('domains/ug', 'UGDomainController');
+	Route::resource('domains/rw', 'RWDomainController');
+	Route::resource('domains/global', 'INTLDomainController');
 	Route::get('settings', 'SystemController@index');
 });
 

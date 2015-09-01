@@ -9,11 +9,11 @@ use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
-    public function getLogin(){
-        
-    }
+	public function getLogin(){
+		return view('login');
+	}
 
-    public function postLogin(){}
+	public function postLogin(){}
 
-    public function getLogout(){}
+	public function getLogout(){}
 }

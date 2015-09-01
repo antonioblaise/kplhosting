@@ -74,3 +74,11 @@ section#home{
 #services .price{
 	font-size: 100%;
 }
+
+.login-page{
+	background: #EEEEEE;
+}
+
+.login-page .form-signin{
+	margin-top: 150px;
+}

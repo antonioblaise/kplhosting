@@ -20,7 +20,7 @@
 				</a>
 			</div>
 			<div id="user" class="pull-right">
-				<a href="#" class="btn btn-success">Administrator</a>
+				<a href="{{ url('admin') }}#" class="btn btn-success">Administrator</a>
 			</div>
 		</div>
 		<nav id="navigation">
