@@ -20,8 +20,8 @@
 					<form class="form-signin">
 						<h2 class="form-signin-heading">Please sign in</h2>
 						<div class="form-group">
-							<label for="inputEmail">Email address</label>
-							<input type="email" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+							<label for="inputUsername">Email address</label>
+							<input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
 						</div>
 						<div class="form-group">
 							<label for="inputPassword">Password</label>
