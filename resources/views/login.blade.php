@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@yield('title')</title>
+	<title>Login Page</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
@@ -18,9 +18,9 @@
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
 					<form class="form-signin">
-						<h2 class="form-signin-heading">Please sign in</h2>
+						<h2 class="form-signin-heading">Login</h2>
 						<div class="form-group">
-							<label for="inputUsername">Email address</label>
+							<label for="inputUsername">Username</label>
 							<input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
 						</div>
 						<div class="form-group">

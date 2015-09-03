@@ -13,7 +13,9 @@ class UsersController extends Controller
 		return view('login');
 	}
 
-	public function postLogin(){}
+	public function postLogin(Requests $request){
+		return $request->all();
+	}
 
 	public function getLogout(){}
 }
